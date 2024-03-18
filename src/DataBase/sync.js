@@ -5,6 +5,8 @@ const cliente = require('../Models/cliente.js');
 const factura = require('../Models/factura.js');
 const product = require('../Models/product.js');
 const supermarket = require('../Models/supermarket.js');
+const provider = require('../Models/provider.js');
+
 
 async function sync(){
     
@@ -66,6 +68,16 @@ async function sync(){
     });
     product.belongsTo(supermarket,{
         foreignKey: 'clientId'
+    });
+
+    //Foreing Key proveedor - product
+    provider.hasMany(product,{
+        foreignKey: 'providerId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    product.belongsTo(supermarket,{
+        foreignKey: 'providerId'
     });
 
 
