@@ -6,6 +6,7 @@ const factura = require('../Models/factura.js');
 const product = require('../Models/product.js');
 const supermarket = require('../Models/supermarket.js');
 const provider = require('../Models/provider.js');
+const administrador = require('../Models/administrador.js');
 
 
 async function sync(){
@@ -80,9 +81,27 @@ async function sync(){
         foreignKey: 'providerId'
     });
 
+    //Foreing Key administrador - supermarket
+    administrador.hasOne(supermarket,{
+        foreignKey: 'usuario',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    supermarket.belongsTo(administrador,{
+        foreignKey: 'usuario'
+    });
 
+    //Foreing Key administrador - product
+    administrador.hasOne(product,{
+        foreignKey: 'usuario',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+    product.belongsTo(administrador,{
+        foreignKey: 'usuario'
+    });
 
-
+    
     await connection.sync({force: false})
     .then(()=>{
         console.log('Synchronized DataBase');
