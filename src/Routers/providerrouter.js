@@ -1,12 +1,10 @@
 const express = require('express');
-const proveedorcontroller = require('../Controllers/providercontroller');
+const providercontroller = require('../Controllers/providercontroller');
 const router = express.Router();
 
 router.post('/addprovider', providercontroller.addProvider);
+router.get('/listproviders/supermarketNit', providercontroller.listProviders);
 router.put('/deleteprovider/:providerId', providercontroller.deleteProvider);
-
-
-
-
+router.put('/updateprovider/:providerId' , providercontroller.updateProvider);
 
 module.exports = router;
