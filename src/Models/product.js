@@ -28,6 +28,10 @@ class product extends Model {}
         productCategory:{
             type: DataTypes.STRING,
             allowNull: false
+        },
+        supermarketNit:{
+            type: DataTypes.STRING,
+            allowNull: false
         }
         // Aqui iría el id del supermercado que en este caso seria MCL
     },{

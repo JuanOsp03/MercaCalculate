@@ -1,5 +1,6 @@
 require('express');
 const product = require('../Models/product');
+const supermarket = require('../Models/supermarket');
 
 async function createProduct (req, res){
     try{
@@ -8,8 +9,8 @@ async function createProduct (req, res){
             productDescription : req.body.productDescription,
             productPrice : req.body.productPrice,
             productBrand : req.body.productBrand,
-            productCategory : req.body.productCategory
-            //Falta el Id del supermercado
+            productCategory : req.body.productCategory,
+            supermarketNit : req.body.supermarketNit
         }).then(function (data){
             return res.status(200).json({
                 data : data
@@ -27,7 +28,30 @@ async function createProduct (req, res){
 
 async function listProducts (req, res){
     try{
-        // Necesito el supermercado
+        await restaurant.findAll({
+            attributes: [
+                'productId',
+                'productName',
+                'productDescription',
+                'productPrice',
+                'productBrand',
+                'productCategory'
+            ],
+            order: ['productName'],
+            include: {
+                model: supermarket,
+                where: { supermarketNit: req.params.supermarketNit},
+                attributes : ['supermarketName']
+            }
+        }).then(function(data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error =>{
+            return res.status(400).json({
+                error: error
+            });
+        })
     }
     catch(e){
         console.log(e);
@@ -41,8 +65,8 @@ async function updateProduct (req, res){
             productDescription : req.body.productDescription,
             productPrice : req.body.productPrice,
             productBrand : req.body.productBrand,
-            productCategory : req.body.productCategory
-            //Falta el Id del supermercado
+            productCategory : req.body.productCategory,
+            supermarketNit : req.body.supermarketNit
         },{
             where: { productId : req.params.productId }
         }).then(function (data){
