@@ -1,11 +1,13 @@
 require('express');
-const client = require('../Models/cliente');
+const factura = require('../Models/cliente');
 
-async function createClient (req, res){
+async function createFactura (req, res){
     try{
-        await client.create({
-            //clientId: req.body.clientId,
-            clientName: req.body.clientName
+        await factura.create({
+            codeFactura: req.body.codeFactura,
+            item: req.body.item,
+            costoTotal: req.body.costoTotal,
+            impuestos: req.body.impuestos
         }).then(function (data){
             return res.status(200).json({
                 data : data
@@ -21,14 +23,16 @@ async function createClient (req, res){
     }
 }
 
-async function listClient (req, res){
+async function listFactura (req, res){
     try{
-        await client.findAll({
+        await factura.findAll({
             attributes: [
-                'clientId',
-                'clientName'
+                'codeFactura',
+                'item',
+                'costoTotal',
+                'impuestos'
             ],
-            order: ['clientId']
+            order: ['codeFactura']
         }).then(function(data){
             return res.status(200).json({
                 data: data
@@ -44,10 +48,13 @@ async function listClient (req, res){
     }
 }
 
-async function updateClient (req, res){
+async function updateFactura (req, res){
     try{
-        await client.update({
-            clientName: req.body.clientName
+        await factura.update({
+            codeFactura: req.body.codeFactura,
+            item: req.body.item,
+            costoTotal: req.body.costoTotal,
+            impuestos: req.body.impuestos
         },{
             where: { clientId : req.params.clientId }
         }).then(function (data){
@@ -65,10 +72,10 @@ async function updateClient (req, res){
     }
 }
 
-async function disableClient (req, res){
+async function disableFactura (req, res){
     try{
-        await client.destroy({
-            where: { clientId : req.params.clientId }
+        await factura.destroy({
+            where: { codeFactura: req.params.codeFactura }
         }).then(function(data){
             return res.status(200).json({
                 data: data
@@ -84,10 +91,10 @@ async function disableClient (req, res){
     }
 }
 
-async function enableClient (req, res){
+async function enableFactura (req, res){
     try{
-        await client.restore({
-            where: { clientId : req.params.clientId }
+        await factura.restore({
+            where: { codeFactura: req.params.codeFactura  }
         }).then(function (data){
             return res.status(200).json({
                 data: data
@@ -104,9 +111,9 @@ async function enableClient (req, res){
 }
 
 module.exports = {
-    createClient,
-    listClient,
-    updateClient,
-    disableClient,
-    enableClient
+    createFactura,
+    listFactura,
+    updateFactura,
+    disableFactura,
+    enableFactura
 }

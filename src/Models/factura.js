@@ -1,23 +1,31 @@
 const {Model, DataTypes} = require('sequelize');
 const connection = require('../DataBase/connection');
 
-class cliente extends Model{}
+class factura extends Model{}
 
-cliente.init({
-    clientId:{
+factura.init({
+    codeFactura:{
         type: DataTypes.STRING,
         primaryKey: true,
         autoIncrement: true
     },
-    clientName:{
+    item:{
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    costoTotal:{
+        type: DataTypes.FLOAT,
+        allowNull: false
+    },
+    impuestos:{
+        type: DataTypes.FLOAT,
         allowNull: false
     }
 },{
     sequelize: connection,
-    modelName: 'client',
+    modelName: 'factura',
     paranoid: true,
     deleteAt: 'destroyTime'
 });
 
-module.exports = cliente;
+module.exports = factura;
