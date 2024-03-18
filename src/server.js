@@ -11,6 +11,7 @@ const facturarouter = require('./Routers/facturarouter.js');
 const productrouter = require('./Routers/productrouter.js');
 const supermarketrouter = require('./Routers/supermarketrouter.js');
 const providerrouter = require('./Routers/providerrouter.js');
+const administradorrouter = require('./Routers/administradorrouter.js');
 
 
 app.use(express.json());
@@ -25,3 +26,4 @@ app.use('/api', facturarouter);
 app.use('/api', productrouter);
 app.use('/api', supermarketrouter);
 app.use('/api', providerrouter);
+app.use('/api', administradorrouter);
