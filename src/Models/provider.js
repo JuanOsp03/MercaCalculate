@@ -1,9 +1,7 @@
 const {Model, DataTypes} = require('sequelize');
 const connection = require('../DataBase/connection');
 
-class product extends Model {
-
-}
+class provider extends Model {}
 
 provider.init ({
     providerId: {
@@ -37,4 +35,4 @@ provider.init ({
 
 });
 
-module.exports = product
+module.exports = provider

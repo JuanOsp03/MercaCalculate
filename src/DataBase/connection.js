@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize'); 
 
-var dataBase = 'Supermarket'; 
+var dataBase = 'supermarket'; 
 var userName = 'postgres'; 
 var password = '2020'; 
 

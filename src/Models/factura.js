@@ -6,8 +6,7 @@ class factura extends Model{}
 factura.init({
     codeFactura:{
         type: DataTypes.STRING,
-        primaryKey: true,
-        autoIncrement: true
+        unique: true
     },
     item:{
         type: DataTypes.STRING,

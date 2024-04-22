@@ -41,7 +41,7 @@ async function sync(){
         foreignKey: 'codeFactura'
     });
 
-    //Foreing Key supermarket - cliente
+    /*Foreing Key supermarket - cliente
     supermarket.hasMany(cliente,{
         foreignKey: 'supermarketNit',
         onDelete: 'restrict',
@@ -61,7 +61,7 @@ async function sync(){
         foreignKey: 'clientId'
     });
 
-    //Foreing Key cliente - product
+    /*Foreing Key cliente - product
     cliente.hasMany(product,{
         foreignKey: 'clientId',
         onDelete: 'restrict',
@@ -71,7 +71,7 @@ async function sync(){
         foreignKey: 'clientId'
     });
 
-    //Foreing Key proveedor - product
+    /*Foreing Key proveedor - product
     provider.hasMany(product,{
         foreignKey: 'providerId',
         onDelete: 'restrict',
@@ -82,7 +82,7 @@ async function sync(){
     });
 
     //Foreing Key administrador - supermarket
-    administrador.hasOne(supermarket,{
+    /*administrador.hasOne(supermarket,{
         foreignKey: 'usuario',
         onDelete: 'restrict',
         onUpdate: 'cascade'
@@ -90,8 +90,9 @@ async function sync(){
     supermarket.belongsTo(administrador,{
         foreignKey: 'usuario'
     });
+    */
 
-    //Foreing Key administrador - product
+    /*Foreing Key administrador - product
     administrador.hasOne(product,{
         foreignKey: 'usuario',
         onDelete: 'restrict',
@@ -100,6 +101,7 @@ async function sync(){
     product.belongsTo(administrador,{
         foreignKey: 'usuario'
     });
+    */
 
     
     await connection.sync({force: false})
