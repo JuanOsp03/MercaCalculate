@@ -5,9 +5,10 @@ class product extends Model {}
 
     product.init({
         productId:{
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncremental: true
+            autoIncremental: true,
+            unique: true
         },
         productName:{
             type: DataTypes.STRING,

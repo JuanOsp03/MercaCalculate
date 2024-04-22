@@ -20,6 +20,7 @@ supermarket.init({
     },
     supermarketNit:{
         type: DataTypes.STRING,
+        primaryKey: true,
         unique: true,
         allowNull: false
     }

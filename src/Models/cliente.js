@@ -5,9 +5,10 @@ class cliente extends Model{}
 
 cliente.init({
     clientId:{
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        unique : true
     },
     clientName:{
         type: DataTypes.STRING,
@@ -15,7 +16,7 @@ cliente.init({
     }
 },{
     sequelize: connection,
-    modelName: 'client',
+    modelName: 'cliente',
     paranoid: true,
     deleteAt: 'destroyTime'
 });
