@@ -17,10 +17,10 @@ const administradorrouter = require('./Routers/administradorrouter.js');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 
-pp.use(cors({
+app.use(cors({
     origin: 'http://localhost:3000'
   }));
-  
+
 app.listen(port, ()=>{
     console.log("The application is running on port "+ port);
 })
