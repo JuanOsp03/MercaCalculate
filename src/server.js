@@ -6,7 +6,7 @@ const cors = require('cors');
 const port  = process.env.PORT || 1337;
 
 //routers
-const clienteroiuter = require('./Routers/clienterouter.js');
+const clienterouter = require('./Routers/clienterouter.js');
 const facturarouter = require('./Routers/facturarouter.js');
 const productrouter = require('./Routers/productrouter.js');
 const supermarketrouter = require('./Routers/supermarketrouter.js');
@@ -26,7 +26,7 @@ app.listen(port, ()=>{
 })
 
 //api
-app.use('/api', clienteroiuter);
+app.use('/api', clienterouter);
 app.use('/api', facturarouter);
 app.use('/api', productrouter);
 app.use('/api', supermarketrouter);
