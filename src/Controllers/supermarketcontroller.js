@@ -48,6 +48,32 @@ async function listSupermarket (req, res){
     }
 }
 
+async function getSupermarket(req, res){
+    try{
+        await supermarket.findOne({
+            where: {supermarketNit : req.params.supermarketNit},
+            attributes: [
+                'supermarketName',
+                'supermarketAddress',
+                'comercialRegistry',
+                'supermarketNit'
+            ],
+        }).then(function (data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
+
 async function updateSupermarket (req, res){
     try{
         await supermarket.update({
