@@ -4,8 +4,8 @@ const client = require('../Models/cliente');
 async function createClient (req, res){
     try{
         await client.create({
-            //clientId: req.body.clientId,
-            clientName: req.body.clientName
+            clientFirstName: req.body.clientFirstName,
+            clientLastName: req.body.clientLastName,
         }).then(function (data){
             return res.status(200).json({
                 data : data
@@ -26,9 +26,10 @@ async function listClient (req, res){
         await client.findAll({
             attributes: [
                 'clientId',
-                'clientName'
+                'clientFirstName',
+                'clientLastName'
             ],
-            order: ['clientId']
+            order: ['clientFirstName']
         }).then(function(data){
             return res.status(200).json({
                 data: data
@@ -47,7 +48,8 @@ async function listClient (req, res){
 async function updateClient (req, res){
     try{
         await client.update({
-            clientName: req.body.clientName
+            clientFirstName: req.body.clientFirstName,
+            clientLastName: req.body.clientLastName
         },{
             where: { clientId : req.params.clientId }
         }).then(function (data){
@@ -103,10 +105,36 @@ async function enableClient (req, res){
     }
 }
 
+
+async function getClientById(req, res){
+    try{
+        await client.findOne({
+            where: {clientId : req.params.clientId},
+            attributes: [
+                'clientId',
+                'clientFirstName',
+                'clientLastName'
+            ],
+        }).then(function (data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
 module.exports = {
     createClient,
     listClient,
     updateClient,
     disableClient,
-    enableClient
+    enableClient,
+    getClientById
 }

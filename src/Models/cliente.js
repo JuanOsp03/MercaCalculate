@@ -10,7 +10,11 @@ cliente.init({
         autoIncrement: true,
         unique : true
     },
-    clientName:{
+    clientLastName:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    clientFirstName:{
         type: DataTypes.STRING,
         allowNull: false
     }
