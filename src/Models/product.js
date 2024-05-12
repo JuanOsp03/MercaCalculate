@@ -30,11 +30,10 @@ class product extends Model {}
             type: DataTypes.STRING,
             allowNull: false
         },
-        supermarketNit:{
-            type: DataTypes.STRING,
+        supermarketId:{
+            type: DataTypes.INTEGER,
             allowNull: false
         }
-        // Aqui iría el id del supermercado que en este caso seria MCL
     },{
         sequelize: connection,
         modelName: 'product',

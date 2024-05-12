@@ -37,7 +37,7 @@ async function listProviders(req, res) {
             order: ['providerName'],
             include: {
                 model: supermarket,
-                where: { supermarketNit : req.params.supermarketNit },
+                where: { supermarketId : req.params.supermarketId },
                 attributes: ['supermarketName']
             }
         }) .then(function (data){
@@ -62,7 +62,7 @@ async function updateProvider(req, res) {
             providerAddress: req.body.providerAddress,
             providerPhone: req.body.providerPhone,
             providerTaxStatus: req.body.providerTaxStatus,
-            supermarketNit: req.body.supermarketNit
+            supermarketId: req.body.supermarketId
         },{ 
             where: { providerId :  req.params.providerId }
         }).then(function (data){

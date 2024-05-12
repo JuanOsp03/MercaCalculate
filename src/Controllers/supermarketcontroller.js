@@ -28,6 +28,7 @@ async function listSupermarket (req, res){
     try{
         await supermarket.findAll({
             attributes: [
+                'supermarketId',
                 'supermarketName',
                 'supermarketAddress',
                 'comercialRegistry',
@@ -53,8 +54,9 @@ async function listSupermarket (req, res){
 async function getSupermarket(req, res){
     try{
         await supermarket.findOne({
-            where: {supermarketNit : req.params.supermarketNit},
+            where: {supermarketId : req.params.supermarketId},
             attributes: [
+                'supermarketId',
                 'supermarketName',
                 'supermarketAddress',
                 'comercialRegistry',
@@ -86,7 +88,7 @@ async function updateSupermarket (req, res){
             supermarketNit: req.body.supermarketNit,
             cityId: req.body.cityId
         },{
-            where: { supermarketNit : req.params.supermarketNit }
+            where: { supermarketId : req.params.supermarketId }
         }).then(function(data){
             return res.status(200).json({
                 data: data
@@ -105,7 +107,7 @@ async function updateSupermarket (req, res){
 async function disableSupermarket (req, res){
     try{
         await supermarket.destroy({
-            where: { supermarketNit : req.params.supermarketNit }
+            where: { supermarketId : req.params.supermarketId }
         }).then(function(data){
             return res.status(200).json({
                 data: data
@@ -124,7 +126,7 @@ async function disableSupermarket (req, res){
 async function enableSupermarket (req, res){
     try{
         await supermarket.restore({
-            where: {  supermarketNit : req.params.supermarketNit }
+            where: {  supermarketId : req.params.supermarketId }
         }).then(function (data){
             return res.status(200).json({
                 data: data
