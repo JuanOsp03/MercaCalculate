@@ -139,6 +139,7 @@ async function enableSupermarket (req, res){
 module.exports = {
     createSupermarket,
     listSupermarket,
+    getSupermarket,
     updateSupermarket,
     disableSupermarket,
     enableSupermarket
