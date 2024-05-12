@@ -10,7 +10,6 @@ async function createProduct (req, res){
             productPrice : req.body.productPrice,
             productBrand : req.body.productBrand,
             productCategory : req.body.productCategory,
-            supermarketNit : req.body.supermarketNit
         }).then(function (data){
             return res.status(200).json({
                 data : data
@@ -40,7 +39,7 @@ async function listProducts (req, res){
             order: ['productName'],
             include: {
                 model: supermarket,
-                where: { supermarketNit: req.params.supermarketNit},
+                where: { supermarketId: req.params.supermarketId},
                 attributes : ['supermarketName']
             }
         }).then(function(data){

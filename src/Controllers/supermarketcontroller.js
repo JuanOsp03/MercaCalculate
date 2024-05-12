@@ -7,7 +7,8 @@ async function createSupermarket (req, res){
             supermarketName: req.body.supermarketName,
             supermarketAddress: req.body.supermarketAddress,
             comercialRegistry: req.body.comercialRegistry,
-            supermarketNit: req.body.supermarketNit
+            supermarketNit: req.body.supermarketNit,
+            cityId: req.body.cityId
         }).then(function(data){
             return  res.status(200).json({
                 data: data
@@ -27,10 +28,12 @@ async function listSupermarket (req, res){
     try{
         await supermarket.findAll({
             attributes: [
+                'supermarketId',
                 'supermarketName',
                 'supermarketAddress',
                 'comercialRegistry',
-                'supermarketNit'
+                'supermarketNit',
+                'cityId'
             ],
             order: ['supermarketName']
         }).then(function(data){
@@ -48,15 +51,44 @@ async function listSupermarket (req, res){
     }
 }
 
+async function getSupermarket(req, res){
+    try{
+        await supermarket.findOne({
+            where: {supermarketId : req.params.supermarketId},
+            attributes: [
+                'supermarketId',
+                'supermarketName',
+                'supermarketAddress',
+                'comercialRegistry',
+                'supermarketNit',
+                'cityId'
+            ],
+        }).then(function (data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
+
 async function updateSupermarket (req, res){
     try{
         await supermarket.update({
             supermarketName: req.body.supermarketName,
             supermarketAddress: req.body.supermarketAddress,
             comercialRegistry: req.body.comercialRegistry,
-            supermarketNit: req.body.supermarketNit
+            supermarketNit: req.body.supermarketNit,
+            cityId: req.body.cityId
         },{
-            where: { supermarketNit : req.params.supermarketNit }
+            where: { supermarketId : req.params.supermarketId }
         }).then(function(data){
             return res.status(200).json({
                 data: data
@@ -75,7 +107,7 @@ async function updateSupermarket (req, res){
 async function disableSupermarket (req, res){
     try{
         await supermarket.destroy({
-            where: { supermarketNit : req.params.supermarketNit }
+            where: { supermarketId : req.params.supermarketId }
         }).then(function(data){
             return res.status(200).json({
                 data: data
@@ -94,7 +126,7 @@ async function disableSupermarket (req, res){
 async function enableSupermarket (req, res){
     try{
         await supermarket.restore({
-            where: {  supermarketNit : req.params.supermarketNit }
+            where: {  supermarketId : req.params.supermarketId }
         }).then(function (data){
             return res.status(200).json({
                 data: data
@@ -113,6 +145,7 @@ async function enableSupermarket (req, res){
 module.exports = {
     createSupermarket,
     listSupermarket,
+    getSupermarket,
     updateSupermarket,
     disableSupermarket,
     enableSupermarket

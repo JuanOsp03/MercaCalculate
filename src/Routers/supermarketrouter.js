@@ -4,8 +4,9 @@ const router = express.Router();
 
 router.post('/createsupermarket', supermarketcontroller.createSupermarket);
 router.get('/listsupermarket', supermarketcontroller.listSupermarket);
-router.put('/updatesupermarket/:supermarketNit', supermarketcontroller.updateSupermarket);
-router.put('/disablesupermarket/:supermarketNit', supermarketcontroller.disableSupermarket);
-router.put('/enablesupermarket/:supermarketNit', supermarketcontroller.enableSupermarket);
+router.get('/getsupermarket/:supermarketId', supermarketcontroller.getSupermarket);
+router.put('/updatesupermarket/:supermarketId', supermarketcontroller.updateSupermarket);
+router.put('/disablesupermarket/:supermarketId', supermarketcontroller.disableSupermarket);
+router.put('/enablesupermarket/:supermarketId', supermarketcontroller.enableSupermarket);
 
 module.exports = router;
