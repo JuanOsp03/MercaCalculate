@@ -12,6 +12,9 @@ const productrouter = require('./Routers/productrouter.js');
 const supermarketrouter = require('./Routers/supermarketrouter.js');
 const providerrouter = require('./Routers/providerrouter.js');
 const administradorrouter = require('./Routers/administradorrouter.js');
+const departmentrouter = require('./Routers/departmentrouter.js');
+const cityrouter = require('./Routers/cityrouter.js');
+
 
 
 app.use(express.json());
@@ -32,3 +35,5 @@ app.use('/api', productrouter);
 app.use('/api', supermarketrouter);
 app.use('/api', providerrouter);
 app.use('/api', administradorrouter);
+app.use('/api', departmentrouter);
+app.use('/api', cityrouter);

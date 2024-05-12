@@ -7,7 +7,8 @@ async function createSupermarket (req, res){
             supermarketName: req.body.supermarketName,
             supermarketAddress: req.body.supermarketAddress,
             comercialRegistry: req.body.comercialRegistry,
-            supermarketNit: req.body.supermarketNit
+            supermarketNit: req.body.supermarketNit,
+            cityId: req.body.cityId
         }).then(function(data){
             return  res.status(200).json({
                 data: data
@@ -30,7 +31,8 @@ async function listSupermarket (req, res){
                 'supermarketName',
                 'supermarketAddress',
                 'comercialRegistry',
-                'supermarketNit'
+                'supermarketNit',
+                'cityId'
             ],
             order: ['supermarketName']
         }).then(function(data){
@@ -56,7 +58,8 @@ async function getSupermarket(req, res){
                 'supermarketName',
                 'supermarketAddress',
                 'comercialRegistry',
-                'supermarketNit'
+                'supermarketNit',
+                'cityId'
             ],
         }).then(function (data){
             return res.status(200).json({
@@ -80,7 +83,8 @@ async function updateSupermarket (req, res){
             supermarketName: req.body.supermarketName,
             supermarketAddress: req.body.supermarketAddress,
             comercialRegistry: req.body.comercialRegistry,
-            supermarketNit: req.body.supermarketNit
+            supermarketNit: req.body.supermarketNit,
+            cityId: req.body.cityId
         },{
             where: { supermarketNit : req.params.supermarketNit }
         }).then(function(data){

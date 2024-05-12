@@ -23,6 +23,10 @@ supermarket.init({
         primaryKey: true,
         unique: true,
         allowNull: false
+    },
+    cityId:{
+        type: DataTypes.STRING,
+        allowNull: false
     }
 },{
     sequelize: connection,

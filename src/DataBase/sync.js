@@ -7,6 +7,12 @@ const product = require('../Models/product.js');
 const supermarket = require('../Models/supermarket.js');
 const provider = require('../Models/provider.js');
 const administrador = require('../Models/administrador.js');
+const department = require('../Models/department.js');
+const city = require('../Models/city.js');
+
+//JSON
+const departmentjson = require('./jsonFiles/departmentjson.js');
+const cityjson = require('./jsonFiles/cityjson.js');
 
 
 async function sync(){
@@ -39,6 +45,26 @@ async function sync(){
     });
     product.belongsTo(supermarket,{
         foreignKey: 'codeFactura'
+    });
+    department.hasMany(city, {
+        foreignKey: 'departmentId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+
+    city.belongsTo(department, {
+        foreignKey: 'departmentId'
+    });
+
+    //foreignKey department : city
+    city.hasMany(supermarket, {
+        foreignKey: 'cityId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+
+    supermarket.belongsTo(city, {
+        foreignKey : 'cityId'
     });
 
     /*Foreing Key supermarket - cliente
@@ -111,6 +137,11 @@ async function sync(){
     .catch((error) =>{
         console.error('Error al sincronizar la base de datos ' + error);
     });
+
+    //Create Json
+    departmentjson.createDepartments();
+    cityjson.createCities();
+    
 
 }
 
