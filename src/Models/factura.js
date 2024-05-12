@@ -4,6 +4,12 @@ const connection = require('../DataBase/connection');
 class factura extends Model{}
 
 factura.init({
+
+    facturaId:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     codeFactura:{
         type: DataTypes.STRING,
         unique: true

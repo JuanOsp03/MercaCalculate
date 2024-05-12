@@ -39,12 +39,12 @@ async function sync(){
 
     //Foreing Key facturas - product
     factura.hasMany(product,{
-        foreignKey: 'codeFactura',
+        foreignKey: 'facturaId',
         onDelete: 'restrict',
         onUpdate: 'cascade'
     });
     product.belongsTo(supermarket,{
-        foreignKey: 'codeFactura'
+        foreignKey: 'facturaId'
     });
     department.hasMany(city, {
         foreignKey: 'departmentId',

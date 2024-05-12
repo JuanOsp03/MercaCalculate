@@ -3,9 +3,9 @@ const facturaController = require ('../Controllers/facturaController');
 const router = express.Router();
 
 router.post('/createfactura', facturaController.createFactura);
-router.get('/listfactura/:codeFactura', facturaController.listFactura);
-router.put('/updatefactura/:codeFactura', facturaController.updateFactura);
-router.put('/disablefactura/codeFactura', facturaController.disableFactura);
-router.put('/enablefactura/:codeFactura', facturaController.enableFactura);
+router.get('/listfactura/:facturaId', facturaController.listFactura);
+router.put('/updatefactura/:facturaId', facturaController.updateFactura);
+router.put('/disablefactura/facturaId', facturaController.disableFactura);
+router.put('/enablefactura/:facturaId', facturaController.enableFactura);
 
 module.exports = router;
