@@ -28,7 +28,7 @@ async function sync(){
     });
 
     //Foreing Key supermarket - factura
-    supermarket.hasMany(factura,{
+    /*supermarket.hasMany(factura,{
         foreignKey: 'supermarketId',
         onDelete: 'restrict',
         onUpdate: 'cascade'
@@ -36,6 +36,7 @@ async function sync(){
     factura.belongsTo(supermarket,{
         foreignKey: 'supermarketId'
     });
+    */
 
     //Foreing Key facturas - product
     factura.hasMany(product,{

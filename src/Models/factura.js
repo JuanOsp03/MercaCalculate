@@ -23,7 +23,7 @@ factura.init({
         allowNull: false
     },
     impuestos:{
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
         allowNull: false
     }
 },{

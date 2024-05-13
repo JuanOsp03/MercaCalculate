@@ -1,5 +1,5 @@
 require('express');
-const factura = require('../Models/cliente');
+const factura = require('../Models/factura');
 
 async function createFactura (req, res){
     try{
@@ -102,7 +102,7 @@ async function updateFactura (req, res){
 async function disableFactura (req, res){
     try{
         await factura.destroy({
-            where: { facturaId: req.params.facturaId }
+            where: { facturaId : req.params.facturaId }
         }).then(function(data){
             return res.status(200).json({
                 data: data
