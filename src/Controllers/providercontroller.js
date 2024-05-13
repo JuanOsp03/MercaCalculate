@@ -1,6 +1,5 @@
 require('express');
 const provider = require('../Models/provider');
-const supermarket = require('../Models/supermarket');
 
 async function addProvider(req, res) {
     try {
@@ -28,6 +27,7 @@ async function listProviders (req, res){
     try{
         await provider.findAll({
             attributes: [
+            'providerId',
             'providerName',
             'providerAddress',
             'providerPhone',
@@ -39,6 +39,32 @@ async function listProviders (req, res){
                 data: data
             });
         }).catch(error =>{
+            return res.status(400).json({
+                error: error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
+async function getProvider(req, res){
+    try{
+        await provider.findOne({
+            where: {providerId : req.params.providerId},
+            attributes: [
+            'providerId',
+            'providerName',
+            'providerAddress',
+            'providerPhone',
+            'providerTaxStatus'
+            ],
+        }).then(function (data){
+            return res.status(200).json({
+                data: data
+            });
+        }).catch(error => {
             return res.status(400).json({
                 error: error
             });
@@ -97,5 +123,6 @@ module.exports = {
     addProvider,
     deleteProvider,
     listProviders,
+    getProvider,
     updateProvider
 }
