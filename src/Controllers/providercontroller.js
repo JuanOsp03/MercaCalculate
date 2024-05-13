@@ -25,32 +25,27 @@ async function addProvider(req, res) {
     }
 }
 
-async function listProviders(req, res) {
-    try {
-        await provider.listProviders ({
+async function listProviders (req, res){
+    try{
+        await provider.findAll({
             attributes: [
-                'providerId',
-                'providerName',
-                'providerAddress',
-                'providerPhone'
+            'providerName',
+            'providerAddress',
+            'providerPhone',
+            'providerTaxStatus'
             ],
-            order: ['providerName'],
-            include: {
-                model: supermarket,
-                where: { supermarketId : req.params.supermarketId },
-                attributes: ['supermarketName']
-            }
-        }) .then(function (data){
-            return res.status(200).json ({
-                data:data
+            order: ['providerName']
+        }).then(function(data){
+            return res.status(200).json({
+                data: data
             });
-        }) .catch(error => {
-            return res.status(400).json ({
+        }).catch(error =>{
+            return res.status(400).json({
                 error: error
             });
         })
     }
-    catch(e) {
+    catch(e){
         console.log(e);
     }
 }
@@ -61,8 +56,7 @@ async function updateProvider(req, res) {
             providerName: req.body.providerName,
             providerAddress: req.body.providerAddress,
             providerPhone: req.body.providerPhone,
-            providerTaxStatus: req.body.providerTaxStatus,
-            supermarketId: req.body.supermarketId
+            providerTaxStatus: req.body.providerTaxStatus
         },{ 
             where: { providerId :  req.params.providerId }
         }).then(function (data){
