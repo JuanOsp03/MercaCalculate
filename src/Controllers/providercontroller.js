@@ -2,7 +2,6 @@ require('express');
 const provider = require('../Models/provider');
 const supermarket = require('../Models/supermarket');
 
-
 async function addProvider(req, res) {
     try {
         await provider.create ({
