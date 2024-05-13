@@ -6,6 +6,9 @@ async function createClient (req, res){
         await client.create({
             clientFirstName: req.body.clientFirstName,
             clientLastName: req.body.clientLastName,
+            clientPhone: req.body.clientPhone,
+            clientEmail: req.body.clientEmail,
+            clientAddress: req.body.clientAddress
         }).then(function (data){
             return res.status(200).json({
                 data : data
@@ -27,7 +30,10 @@ async function listClient (req, res){
             attributes: [
                 'clientId',
                 'clientFirstName',
-                'clientLastName'
+                'clientLastName',
+                'clientPhone',
+                'clientEmail',
+                'clientAddress'
             ],
             order: ['clientFirstName']
         }).then(function(data){
@@ -49,7 +55,10 @@ async function updateClient (req, res){
     try{
         await client.update({
             clientFirstName: req.body.clientFirstName,
-            clientLastName: req.body.clientLastName
+            clientLastName: req.body.clientLastName,
+            clientPhone: req.body.clientPhone,
+            clientEmail: req.body.clientEmail,
+            clientAddress: req.body.clientAddress
         },{
             where: { clientId : req.params.clientId }
         }).then(function (data){
@@ -113,7 +122,10 @@ async function getClientById(req, res){
             attributes: [
                 'clientId',
                 'clientFirstName',
-                'clientLastName'
+                'clientLastName',
+                'clientPhone',
+                'clientEmail',
+                'clientAddress'
             ],
         }).then(function (data){
             return res.status(200).json({

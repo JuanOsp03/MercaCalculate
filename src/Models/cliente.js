@@ -1,7 +1,7 @@
 const {Model, DataTypes} = require('sequelize');
 const connection = require('../DataBase/connection');
 
-class cliente extends Model{};
+class cliente extends Model{}
 
 cliente.init({
     clientId:{
@@ -15,6 +15,19 @@ cliente.init({
         allowNull: false
     },
     clientFirstName:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    clientPhone:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    clientEmail:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    
+    clientAddress:{
         type: DataTypes.STRING,
         allowNull: false
     }
