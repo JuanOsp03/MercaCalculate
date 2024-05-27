@@ -5,6 +5,10 @@ const app = express();
 const cors = require('cors');
 const port  = process.env.PORT || 1337;
 
+
+
+
+
 //routers
 const clienteroiuter = require('./Routers/clienterouter.js');
 const facturarouter = require('./Routers/facturarouter.js');
@@ -14,6 +18,7 @@ const providerrouter = require('./Routers/providerrouter.js');
 const administradorrouter = require('./Routers/administradorrouter.js');
 const departmentrouter = require('./Routers/departmentrouter.js');
 const cityrouter = require('./Routers/cityrouter.js');
+const userrouter = require('./Routers/userrouter.js');
 
 
 
@@ -37,3 +42,4 @@ app.use('/api', providerrouter);
 app.use('/api', administradorrouter);
 app.use('/api', departmentrouter);
 app.use('/api', cityrouter);
+app.use('/api', userrouter);
